@@ -26,8 +26,16 @@ pipeline {
         }
     }
     post {
-                success {
-                    archiveArtifacts(artifacts: '**/target/*.jar', allowEmptyArchive: true)
-                }
+        success {
+            archiveArtifacts(artifacts: '**/target/*.jar', allowEmptyArchive: true)
+            mail to: 'venkatesh.mahimaluru@gmail.com',
+                    subject: "Build Pipeline Successful: ${currentBuild.fullDisplayName}",
+                    body: "Something is wrong with ${env.BUILD_URL}"
+        }
+        failure {
+            mail to: 'venkatesh.mahimaluru@gmail.com',
+                    subject: "Failed Pipeline: ${currentBuild.fullDisplayName}",
+                    body: "Something is wrong with ${env.BUILD_URL}"
+        }
             }
 }
