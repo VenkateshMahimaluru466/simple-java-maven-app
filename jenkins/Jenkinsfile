@@ -4,6 +4,11 @@ pipeline {
         maven 'maven'
     }
     stages {
+        stage('Prechecks') {
+            steps {
+                echo ${BRANCH_NAME}
+                echo ${CHANGE_ID}
+            }
         stage('Build') {
             steps {
                 bat 'mvn -B -DskipTests clean package'
