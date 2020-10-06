@@ -6,8 +6,8 @@ pipeline {
     stages {
         stage('Prechecks') {
             steps {
-                echo "${BRANCH_NAME}"
-                echo "${CHANGE_ID}"
+                echo "${env.BRANCH_NAME}"
+                echo "${env.CHANGE_ID}"
             }
         }
         stage('Build') {
